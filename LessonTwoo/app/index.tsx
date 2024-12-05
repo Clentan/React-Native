@@ -8,7 +8,8 @@ import {
   StyleSheet, 
   Platform,
   Alert,
-  TextInput
+  TextInput,
+  Modal
 } from 'react-native';
 import { Audio } from 'expo-av';
 
@@ -18,6 +19,11 @@ export default function AudioRecordingApp() {
   const [isRecording, setIsRecording] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredRecordings, setFilteredRecordings] = useState([]);
+  const [supportModalVisible, setSupportModalVisible] = useState(false);
+
+
+  //This is a modal i use for react js
+
 
   // Request microphone permissions
   useEffect(() => {
@@ -179,12 +185,7 @@ export default function AudioRecordingApp() {
           🗑️
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text 
-          className='text-center border-orange-500 border p-3 rounded-full'>
-          ⏯️
-        </Text>
-      </TouchableOpacity>
+      
     </View>
   );
 
@@ -194,6 +195,7 @@ export default function AudioRecordingApp() {
       
       {/* Search Input */}
       <TextInput
+      className=''
         style={styles.searchInput}
         placeholder="Search recordings..."
         value={searchQuery}
@@ -227,7 +229,27 @@ export default function AudioRecordingApp() {
           </Text>
         }
       />
+
+      <View>
+        <TouchableOpacity>
+        <Text>Feedback</Text>
+        </TouchableOpacity>
+    
+      
+        <TouchableOpacity
+        onPress={() => setSupportModalVisible(true)}
+        >
+
+        <Text
+        className='text-4xl w-20'
+        >
+          💬
+        </Text>
+
+        </TouchableOpacity>
+      </View>
     </View>
+    
   );
 }
 
